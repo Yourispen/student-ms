@@ -1,0 +1,30 @@
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: STUDENT-MS-SERVICE
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:security-db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${DB_USER:username}
+    password: ${DB_PAWORD:password}
+    driver-class-name: org.h2.Driver
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/student_ms/protocol/openid-connect/certs
+  jpa:
+    hibernate:
+      #ddl-auto: create-drop
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
+
+
