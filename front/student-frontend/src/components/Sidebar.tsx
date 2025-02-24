@@ -10,8 +10,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     if (
-      status == "unauthenticated" ||
-      (status == "authenticated")
+      status == "unauthenticated"
     ) {
       router.refresh();
     }
